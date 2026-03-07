@@ -2,7 +2,6 @@ package com.school.student_api.security;
 
 import com.school.student_api.model.User;
 import com.school.student_api.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,10 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
+    // Manual constructor injection (replaces @RequiredArgsConstructor)
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email)

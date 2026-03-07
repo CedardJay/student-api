@@ -5,20 +5,27 @@ import com.school.student_api.model.AuthResponse;
 import com.school.student_api.model.User;
 import com.school.student_api.repository.UserRepository;
 import com.school.student_api.security.JwtUtil;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+
+    // Manual constructor injection (replaces @RequiredArgsConstructor)
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                       JwtUtil jwtUtil, AuthenticationManager authenticationManager) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+        this.authenticationManager = authenticationManager;
+    }
 
     // Register a new user
     public AuthResponse register(AuthRequest request) {

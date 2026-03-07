@@ -2,7 +2,6 @@ package com.school.student_api.controller;
 
 import com.school.student_api.model.Student;
 import com.school.student_api.service.StudentService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +11,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/students")
 @CrossOrigin(origins = "http://localhost:3000")
-@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
+
+    // Manual constructor injection (replaces @RequiredArgsConstructor)
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     // GET all students
     // http://localhost:8080/api/students

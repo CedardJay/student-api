@@ -2,16 +2,19 @@ package com.school.student_api.service;
 
 import com.school.student_api.model.Student;
 import com.school.student_api.repository.StudentRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
+    // Manual constructor injection (replaces @RequiredArgsConstructor)
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     // GET all students
     public List<Student> getAllStudents() {
