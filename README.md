@@ -61,7 +61,7 @@ Make sure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/student-api.git
+git clone https://github.com/CedardJay/student-api.git
 cd student-api
 ```
 
